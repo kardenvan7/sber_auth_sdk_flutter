@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <variable
+            name="buttonviewmodel"
+            type="com.kardenvan.sber_auth_sdk_flutter.view_model.SberIdLoginButtonViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <sberid.sdk.auth.view.SberIDButton
+            android:id="@+id/sber_id_login_button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:clientId="@{buttonviewmodel.clientId}"
+            app:buttonType="@{buttonviewmodel.type}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

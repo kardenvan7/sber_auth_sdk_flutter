@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sber_auth_sdk_flutter/platform_api/auth_parameters/sber_auth_parameters.dart';
 import 'package:sber_auth_sdk_flutter/sber_auth_sdk_flutter.dart';
+import 'package:sber_auth_sdk_flutter/widgets/sber_id_login_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -85,16 +86,25 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Plugin example app'),
       ),
       body: Center(
-        child: TextButton(
-          child: const Text('Try sber login'),
-          onPressed: () {
-            SberAuthSdkFlutter().authorizeWithSberId(
-              const SberAuthParameters(
-                redirectUrl: _redirectUrl,
-                clientId: _clientId,
-              ),
-            );
-          },
+        child: Column(
+          children: [
+            TextButton(
+              child: const Text('Custom button'),
+              onPressed: () {
+                SberAuthSdkFlutter().authorizeWithSberId(
+                  const SberAuthParameters(
+                    redirectUrl: _redirectUrl,
+                    clientId: _clientId,
+                  ),
+                );
+              },
+            ),
+            const SizedBox(height: 100),
+            const SberIdLoginButton(
+              clientId: _clientId,
+              redirectUrl: _redirectUrl,
+            ),
+          ],
         ),
       ),
     );

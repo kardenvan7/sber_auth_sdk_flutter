@@ -1,7 +1,8 @@
 package com.kardenvan.sber_auth_sdk_flutter
 
-import android.content.Context
-import android.content.Intent
+import android.util.Log
+import com.kardenvan.sber_auth_sdk_flutter.core.PluginLogger
+import com.kardenvan.sber_auth_sdk_flutter.view.button.SberIdLoginButtonViewPlatformFactory
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
@@ -22,9 +23,15 @@ class SberAuthSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware
     override fun onAttachedToEngine(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, "sber_auth_sdk_flutter")
         channel.setMethodCallHandler(this)
+
+        flutterPluginBinding.platformViewRegistry.registerViewFactory(
+            "sber_id_login_button",
+            SberIdLoginButtonViewPlatformFactory(),
+        )
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
+        PluginLogger.log("ATTACHED TO ACTIVITY")
         callHandler = SberAuthSdkMethodCallHandler(binding.activity)
     }
 
