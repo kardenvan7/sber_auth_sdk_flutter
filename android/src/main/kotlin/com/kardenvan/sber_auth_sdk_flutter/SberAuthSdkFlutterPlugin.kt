@@ -33,15 +33,15 @@ class SberAuthSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
-        TODO("Not yet implemented")
+        // do nothing
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-        TODO("Not yet implemented")
+        // do nothing
     }
 
     override fun onDetachedFromActivity() {
-        TODO("Not yet implemented")
+        // do nothing
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
