@@ -2,14 +2,17 @@ import 'package:sber_auth_sdk_flutter/platform_api/auth_parameters/sber_auth_par
 
 import 'sber_auth_sdk_flutter_platform_interface.dart';
 
+export 'platform_api/platform_api.dart';
+export 'widgets/widgets.dart';
+
 class SberAuthSdkFlutter {
-  final platformInstance = SberAuthSdkFlutterPlatform.instance;
+  final _platformInstance = SberAuthSdkFlutterPlatform.instance;
 
   Future<String?> getPlatformVersion() {
-    return platformInstance.getPlatformVersion();
+    return _platformInstance.getPlatformVersion();
   }
 
   Future<void> authorizeWithSberId(SberAuthParameters parameters) {
-    return platformInstance.authorizeWithSberId(parameters);
+    return _platformInstance.authorizeWithSberId(parameters);
   }
 }

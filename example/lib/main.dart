@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sber_auth_sdk_flutter/platform_api/auth_parameters/sber_auth_parameters.dart';
 import 'package:sber_auth_sdk_flutter/sber_auth_sdk_flutter.dart';
+import 'package:uuid/uuid.dart';
 
 void main() {
   runApp(const MyApp());
@@ -77,6 +78,7 @@ class HomeScreen extends StatelessWidget {
 
   static const String _redirectUrl = 'your-deeplink';
   static const String _clientId = 'your-client-id';
+  static const String _scope = 'openid name email mobile gender birthdate';
   static const bool _inCustomTabs = true;
 
   @override
@@ -96,13 +98,17 @@ class HomeScreen extends StatelessWidget {
 
   Future<void> _onAuthButtonPressed() async {
     final sberSdk = SberAuthSdkFlutter();
+    final nonce = const Uuid().v4();
+    final state = const Uuid().v4();
 
     await sberSdk.authorizeWithSberId(
-      const SberAuthParameters(
-        redirectUrl: _redirectUrl,
+      SberAuthParameters(
         clientId: _clientId,
+        redirectUrl: _redirectUrl,
+        scope: _scope,
+        nonce: nonce,
+        state: state,
         inCustomTabs: _inCustomTabs,
-        scope: 'openid name email mobile birthdate gender',
       ),
     );
   }

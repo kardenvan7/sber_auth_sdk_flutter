@@ -10,28 +10,23 @@ class SberIdLoginUriBuilder constructor(
     private val context: Context, private val parameters: SberIdLoginParameters
 ) {
     fun build(): Uri {
-        val state = generateRandomState()
-        val nonce = generateRandomNonce()
-
         val builder = SberIDLoginManager.sberIDBuilder()
 
         builder
             .clientID(parameters.clientId)
             .scope(parameters.scope)
-            .state(state)
-            .nonce(nonce)
+            .state(parameters.state)
+            .nonce(parameters.nonce)
             .redirectUri(parameters.redirectUrl)
+
+        if (parameters.codeChallenge != null) {
+            builder
+                .codeChallenge(parameters.codeChallenge.value)
+                .codeChallengeMethod(parameters.codeChallenge.method)
+        }
 
         if (parameters.inCustomTabs) builder.customTabRedirectUri(parameters.redirectUrl, context)
 
         return builder.build()
-    }
-
-    private fun generateRandomState(): String {
-        return UUID.randomUUID().toString()
-    }
-
-    private fun generateRandomNonce(): String {
-        return UUID.randomUUID().toString()
     }
 }
