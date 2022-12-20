@@ -9,10 +9,6 @@ import java.util.*
 class SberIdLoginUriBuilder constructor(
     private val context: Context, private val parameters: SberIdLoginParameters
 ) {
-    companion object {
-        private const val scope = "openid name email mobile birthdate gender"
-    }
-
     fun build(): Uri {
         val state = generateRandomState()
         val nonce = generateRandomNonce()
@@ -21,7 +17,7 @@ class SberIdLoginUriBuilder constructor(
 
         builder
             .clientID(parameters.clientId)
-            .scope(scope)
+            .scope(parameters.scope)
             .state(state)
             .nonce(nonce)
             .redirectUri(parameters.redirectUrl)

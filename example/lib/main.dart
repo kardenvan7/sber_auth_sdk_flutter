@@ -102,6 +102,7 @@ class HomeScreen extends StatelessWidget {
         redirectUrl: _redirectUrl,
         clientId: _clientId,
         inCustomTabs: _inCustomTabs,
+        scope: 'openid name email mobile birthdate gender',
       ),
     );
   }

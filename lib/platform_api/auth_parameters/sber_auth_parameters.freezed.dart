@@ -22,6 +22,7 @@ SberAuthParameters _$SberAuthParametersFromJson(Map<String, dynamic> json) {
 mixin _$SberAuthParameters {
   String get redirectUrl => throw _privateConstructorUsedError;
   String get clientId => throw _privateConstructorUsedError;
+  String get scope => throw _privateConstructorUsedError;
   bool get inCustomTabs => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +37,8 @@ abstract class $SberAuthParametersCopyWith<$Res> {
           SberAuthParameters value, $Res Function(SberAuthParameters) then) =
       _$SberAuthParametersCopyWithImpl<$Res, SberAuthParameters>;
   @useResult
-  $Res call({String redirectUrl, String clientId, bool inCustomTabs});
+  $Res call(
+      {String redirectUrl, String clientId, String scope, bool inCustomTabs});
 }
 
 /// @nodoc
@@ -54,6 +56,7 @@ class _$SberAuthParametersCopyWithImpl<$Res, $Val extends SberAuthParameters>
   $Res call({
     Object? redirectUrl = null,
     Object? clientId = null,
+    Object? scope = null,
     Object? inCustomTabs = null,
   }) {
     return _then(_value.copyWith(
@@ -64,6 +67,10 @@ class _$SberAuthParametersCopyWithImpl<$Res, $Val extends SberAuthParameters>
       clientId: null == clientId
           ? _value.clientId
           : clientId // ignore: cast_nullable_to_non_nullable
+              as String,
+      scope: null == scope
+          ? _value.scope
+          : scope // ignore: cast_nullable_to_non_nullable
               as String,
       inCustomTabs: null == inCustomTabs
           ? _value.inCustomTabs
@@ -82,7 +89,8 @@ abstract class _$$_SberAuthSdkAuthParametersCopyWith<$Res>
       __$$_SberAuthSdkAuthParametersCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String redirectUrl, String clientId, bool inCustomTabs});
+  $Res call(
+      {String redirectUrl, String clientId, String scope, bool inCustomTabs});
 }
 
 /// @nodoc
@@ -99,6 +107,7 @@ class __$$_SberAuthSdkAuthParametersCopyWithImpl<$Res>
   $Res call({
     Object? redirectUrl = null,
     Object? clientId = null,
+    Object? scope = null,
     Object? inCustomTabs = null,
   }) {
     return _then(_$_SberAuthSdkAuthParameters(
@@ -109,6 +118,10 @@ class __$$_SberAuthSdkAuthParametersCopyWithImpl<$Res>
       clientId: null == clientId
           ? _value.clientId
           : clientId // ignore: cast_nullable_to_non_nullable
+              as String,
+      scope: null == scope
+          ? _value.scope
+          : scope // ignore: cast_nullable_to_non_nullable
               as String,
       inCustomTabs: null == inCustomTabs
           ? _value.inCustomTabs
@@ -124,6 +137,7 @@ class _$_SberAuthSdkAuthParameters extends _SberAuthSdkAuthParameters {
   const _$_SberAuthSdkAuthParameters(
       {required this.redirectUrl,
       required this.clientId,
+      required this.scope,
       required this.inCustomTabs})
       : super._();
 
@@ -135,11 +149,13 @@ class _$_SberAuthSdkAuthParameters extends _SberAuthSdkAuthParameters {
   @override
   final String clientId;
   @override
+  final String scope;
+  @override
   final bool inCustomTabs;
 
   @override
   String toString() {
-    return 'SberAuthParameters(redirectUrl: $redirectUrl, clientId: $clientId, inCustomTabs: $inCustomTabs)';
+    return 'SberAuthParameters(redirectUrl: $redirectUrl, clientId: $clientId, scope: $scope, inCustomTabs: $inCustomTabs)';
   }
 
   @override
@@ -151,6 +167,7 @@ class _$_SberAuthSdkAuthParameters extends _SberAuthSdkAuthParameters {
                 other.redirectUrl == redirectUrl) &&
             (identical(other.clientId, clientId) ||
                 other.clientId == clientId) &&
+            (identical(other.scope, scope) || other.scope == scope) &&
             (identical(other.inCustomTabs, inCustomTabs) ||
                 other.inCustomTabs == inCustomTabs));
   }
@@ -158,7 +175,7 @@ class _$_SberAuthSdkAuthParameters extends _SberAuthSdkAuthParameters {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, redirectUrl, clientId, inCustomTabs);
+      Object.hash(runtimeType, redirectUrl, clientId, scope, inCustomTabs);
 
   @JsonKey(ignore: true)
   @override
@@ -179,6 +196,7 @@ abstract class _SberAuthSdkAuthParameters extends SberAuthParameters {
   const factory _SberAuthSdkAuthParameters(
       {required final String redirectUrl,
       required final String clientId,
+      required final String scope,
       required final bool inCustomTabs}) = _$_SberAuthSdkAuthParameters;
   const _SberAuthSdkAuthParameters._() : super._();
 
@@ -189,6 +207,8 @@ abstract class _SberAuthSdkAuthParameters extends SberAuthParameters {
   String get redirectUrl;
   @override
   String get clientId;
+  @override
+  String get scope;
   @override
   bool get inCustomTabs;
   @override

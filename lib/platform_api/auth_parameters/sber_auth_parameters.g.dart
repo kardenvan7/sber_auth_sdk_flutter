@@ -11,6 +11,7 @@ _$_SberAuthSdkAuthParameters _$$_SberAuthSdkAuthParametersFromJson(
     _$_SberAuthSdkAuthParameters(
       redirectUrl: json['redirect_url'] as String,
       clientId: json['client_id'] as String,
+      scope: json['scope'] as String,
       inCustomTabs: json['in_custom_tabs'] as bool,
     );
 
@@ -19,5 +20,6 @@ Map<String, dynamic> _$$_SberAuthSdkAuthParametersToJson(
     <String, dynamic>{
       'redirect_url': instance.redirectUrl,
       'client_id': instance.clientId,
+      'scope': instance.scope,
       'in_custom_tabs': instance.inCustomTabs,
     };
