@@ -10,6 +10,7 @@ class SberAuthParameters with _$SberAuthParameters {
   const factory SberAuthParameters({
     required String redirectUrl,
     required String clientId,
+    required bool inCustomTabs,
   }) = _SberAuthSdkAuthParameters;
 
   factory SberAuthParameters.fromJson(Map<String, dynamic> json) =>

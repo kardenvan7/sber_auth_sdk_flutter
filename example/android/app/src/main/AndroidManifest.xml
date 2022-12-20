@@ -26,13 +26,35 @@
             </intent-filter>
 
             <meta-data android:name="flutter_deeplinking_enabled" android:value="true" />
-            <intent-filter android:autoVerify="true">
+            <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="your-schema" android:host="your-host" />
+                <data android:scheme="your-scheme" android:host="your-host" />
             </intent-filter>
         </activity>
+
+<!--       This was required by documentation (https://developers.sber.ru/docs/ru/sberid/sdk/androidsdk/overview#sber-id-cherez-edinoe-veb-okno-avtorizatsii) -->
+<!--       But looks like for flutter implementation it is not needed and only creates conflict
+           for deeplinking. If the same host and scheme are provided for deeplinking in your flutter
+           activity (above) and in sber activity (below) then upon returning to the app a prompt
+           is created. This prompt lets user pick app (2 identical ones) to open deeplink with and
+           upon tapping on one of these no deeplink activity is happening-->
+<!--       <activity-->
+<!--           android:name="sberid.sdk.auth.view.activity.ReturnToCustomTabsSberIDActivity"-->
+<!--           android:screenOrientation="portrait"-->
+<!--           android:launchMode="singleTask"-->
+<!--           android:exported="true">-->
+<!--           <intent-filter>-->
+<!--               <action android:name="android.intent.action.VIEW" />-->
+
+<!--               <category android:name="android.intent.category.DEFAULT" />-->
+<!--               <category android:name="android.intent.category.BROWSABLE" />-->
+
+<!--               <data android:scheme="your-scheme" android:host="your-host" />-->
+<!--           </intent-filter>-->
+<!--       </activity>-->
+
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

@@ -13,7 +13,8 @@ class SberIdLoginParametersFactory {
 
             return SberIdLoginParameters(
                 redirectUrl = redirectUrl,
-                clientId = clientId
+                clientId = clientId,
+                inCustomTabs = map["in_custom_tabs"] as Boolean? ?: false
             )
         }
     }

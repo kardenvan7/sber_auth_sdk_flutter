@@ -22,6 +22,7 @@ SberAuthParameters _$SberAuthParametersFromJson(Map<String, dynamic> json) {
 mixin _$SberAuthParameters {
   String get redirectUrl => throw _privateConstructorUsedError;
   String get clientId => throw _privateConstructorUsedError;
+  bool get inCustomTabs => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $SberAuthParametersCopyWith<$Res> {
           SberAuthParameters value, $Res Function(SberAuthParameters) then) =
       _$SberAuthParametersCopyWithImpl<$Res, SberAuthParameters>;
   @useResult
-  $Res call({String redirectUrl, String clientId});
+  $Res call({String redirectUrl, String clientId, bool inCustomTabs});
 }
 
 /// @nodoc
@@ -53,6 +54,7 @@ class _$SberAuthParametersCopyWithImpl<$Res, $Val extends SberAuthParameters>
   $Res call({
     Object? redirectUrl = null,
     Object? clientId = null,
+    Object? inCustomTabs = null,
   }) {
     return _then(_value.copyWith(
       redirectUrl: null == redirectUrl
@@ -63,6 +65,10 @@ class _$SberAuthParametersCopyWithImpl<$Res, $Val extends SberAuthParameters>
           ? _value.clientId
           : clientId // ignore: cast_nullable_to_non_nullable
               as String,
+      inCustomTabs: null == inCustomTabs
+          ? _value.inCustomTabs
+          : inCustomTabs // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -76,7 +82,7 @@ abstract class _$$_SberAuthSdkAuthParametersCopyWith<$Res>
       __$$_SberAuthSdkAuthParametersCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String redirectUrl, String clientId});
+  $Res call({String redirectUrl, String clientId, bool inCustomTabs});
 }
 
 /// @nodoc
@@ -93,6 +99,7 @@ class __$$_SberAuthSdkAuthParametersCopyWithImpl<$Res>
   $Res call({
     Object? redirectUrl = null,
     Object? clientId = null,
+    Object? inCustomTabs = null,
   }) {
     return _then(_$_SberAuthSdkAuthParameters(
       redirectUrl: null == redirectUrl
@@ -103,6 +110,10 @@ class __$$_SberAuthSdkAuthParametersCopyWithImpl<$Res>
           ? _value.clientId
           : clientId // ignore: cast_nullable_to_non_nullable
               as String,
+      inCustomTabs: null == inCustomTabs
+          ? _value.inCustomTabs
+          : inCustomTabs // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -111,7 +122,9 @@ class __$$_SberAuthSdkAuthParametersCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SberAuthSdkAuthParameters extends _SberAuthSdkAuthParameters {
   const _$_SberAuthSdkAuthParameters(
-      {required this.redirectUrl, required this.clientId})
+      {required this.redirectUrl,
+      required this.clientId,
+      required this.inCustomTabs})
       : super._();
 
   factory _$_SberAuthSdkAuthParameters.fromJson(Map<String, dynamic> json) =>
@@ -121,10 +134,12 @@ class _$_SberAuthSdkAuthParameters extends _SberAuthSdkAuthParameters {
   final String redirectUrl;
   @override
   final String clientId;
+  @override
+  final bool inCustomTabs;
 
   @override
   String toString() {
-    return 'SberAuthParameters(redirectUrl: $redirectUrl, clientId: $clientId)';
+    return 'SberAuthParameters(redirectUrl: $redirectUrl, clientId: $clientId, inCustomTabs: $inCustomTabs)';
   }
 
   @override
@@ -135,12 +150,15 @@ class _$_SberAuthSdkAuthParameters extends _SberAuthSdkAuthParameters {
             (identical(other.redirectUrl, redirectUrl) ||
                 other.redirectUrl == redirectUrl) &&
             (identical(other.clientId, clientId) ||
-                other.clientId == clientId));
+                other.clientId == clientId) &&
+            (identical(other.inCustomTabs, inCustomTabs) ||
+                other.inCustomTabs == inCustomTabs));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, redirectUrl, clientId);
+  int get hashCode =>
+      Object.hash(runtimeType, redirectUrl, clientId, inCustomTabs);
 
   @JsonKey(ignore: true)
   @override
@@ -160,7 +178,8 @@ class _$_SberAuthSdkAuthParameters extends _SberAuthSdkAuthParameters {
 abstract class _SberAuthSdkAuthParameters extends SberAuthParameters {
   const factory _SberAuthSdkAuthParameters(
       {required final String redirectUrl,
-      required final String clientId}) = _$_SberAuthSdkAuthParameters;
+      required final String clientId,
+      required final bool inCustomTabs}) = _$_SberAuthSdkAuthParameters;
   const _SberAuthSdkAuthParameters._() : super._();
 
   factory _SberAuthSdkAuthParameters.fromJson(Map<String, dynamic> json) =
@@ -170,6 +189,8 @@ abstract class _SberAuthSdkAuthParameters extends SberAuthParameters {
   String get redirectUrl;
   @override
   String get clientId;
+  @override
+  bool get inCustomTabs;
   @override
   @JsonKey(ignore: true)
   _$$_SberAuthSdkAuthParametersCopyWith<_$_SberAuthSdkAuthParameters>

@@ -1,25 +1,31 @@
 package com.kardenvan.sber_auth_sdk_flutter.login
 
 import android.content.Context
+import android.net.Uri
+import com.kardenvan.sber_auth_sdk_flutter.login.helpers.SberIdLoginUriBuilder
+import com.kardenvan.sber_auth_sdk_flutter.login.parameters.SberIdLoginParameters
 import sberid.sdk.auth.login.SberIDLoginManager
-import java.util.UUID
 
-object SberIdLoginFacade {
+class SberIdLoginFacade constructor(private val parameters: SberIdLoginParameters) {
     private val loginManager = SberIDLoginManager()
-    private const val scope = "openid name email mobile birthdate gender"
 
-    fun login(context: Context, redirectUrl: String, clientId: String): Boolean {
-        val state = UUID.randomUUID().toString()
-        val nonce = UUID.randomUUID().toString()
+    fun login(context: Context): Boolean {
+        val uri = buildUri(context)
 
-        val uri = SberIDLoginManager.sberIDBuilder()
-            .clientID(clientId)
-            .scope(scope)
-            .state(state)
-            .nonce(nonce)
-            .redirectUri(redirectUrl)
-            .build()
+        return loginWithSberID(context, uri, parameters.inCustomTabs)
+    }
 
-        return loginManager.loginWithSberbankID(context, uri)
+    private fun loginWithSberID(context: Context, uri: Uri, inCustomTabs: Boolean): Boolean {
+        return if (inCustomTabs) {
+            loginManager.loginWithSberIDToCustomTabs(context, uri)
+        } else {
+            loginManager.loginWithSberbankID(context, uri)
+        }
+    }
+
+    private fun buildUri(context: Context): Uri {
+        val builder = SberIdLoginUriBuilder(context, parameters)
+
+        return builder.build()
     }
 }

@@ -77,6 +77,7 @@ class HomeScreen extends StatelessWidget {
 
   static const String _redirectUrl = 'your-deeplink';
   static const String _clientId = 'your-client-id';
+  static const bool _inCustomTabs = true;
 
   @override
   Widget build(BuildContext context) {
@@ -86,16 +87,21 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Center(
         child: TextButton(
+          onPressed: _onAuthButtonPressed,
           child: const Text('Try sber login'),
-          onPressed: () {
-            SberAuthSdkFlutter().authorizeWithSberId(
-              const SberAuthParameters(
-                redirectUrl: _redirectUrl,
-                clientId: _clientId,
-              ),
-            );
-          },
         ),
+      ),
+    );
+  }
+
+  Future<void> _onAuthButtonPressed() async {
+    final sberSdk = SberAuthSdkFlutter();
+
+    await sberSdk.authorizeWithSberId(
+      const SberAuthParameters(
+        redirectUrl: _redirectUrl,
+        clientId: _clientId,
+        inCustomTabs: _inCustomTabs,
       ),
     );
   }

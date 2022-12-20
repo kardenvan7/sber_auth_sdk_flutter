@@ -5,7 +5,6 @@ import com.kardenvan.sber_auth_sdk_flutter.login.SberIdLoginFacade
 import com.kardenvan.sber_auth_sdk_flutter.login.parameters.SberIdLoginParametersFactory
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel.Result
-import sberid.sdk.auth.login.SberIDLoginManager
 
 class SberAuthSdkMethodCallHandler constructor(private val context: Context) {
     fun onMethodCall(call: MethodCall, result: Result) {
@@ -22,13 +21,10 @@ class SberAuthSdkMethodCallHandler constructor(private val context: Context) {
 
             if (callArgs !is Map<*, *>) throw Exception("Method call arguments are invalid")
 
-            val arguments = SberIdLoginParametersFactory.fromMap(callArgs)
+            val loginParameters = SberIdLoginParametersFactory.fromMap(callArgs)
 
-            val hasLoginBegun = SberIdLoginFacade.login(
-                context,
-                redirectUrl = arguments.redirectUrl,
-                clientId = arguments.clientId
-            )
+            val loginFacade = SberIdLoginFacade(parameters = loginParameters)
+            val hasLoginBegun = loginFacade.login(context)
 
             if (!hasLoginBegun) {
                 result.error(
@@ -40,16 +36,20 @@ class SberAuthSdkMethodCallHandler constructor(private val context: Context) {
                 result.success(null)
             }
         } catch (e: Exception) {
-            result.error(
-                e.message ?: "-1",
-                e.localizedMessage ?: "Unknown error",
-                e.stackTraceToString()
-            )
+            handleMethodError(result, e)
         }
     }
 
     private fun getPlatformVersion(result: Result) {
         result.success("Android ${android.os.Build.VERSION.RELEASE}")
+    }
+
+    private fun handleMethodError(result: Result, e: Exception) {
+        result.error(
+            e.message ?: "-1",
+            e.localizedMessage ?: "Unknown error",
+            e.stackTraceToString()
+        )
     }
 
     private fun handleUnknownMethodCall(result: Result) {
