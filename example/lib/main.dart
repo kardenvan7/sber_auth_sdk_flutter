@@ -128,6 +128,14 @@ class SberAuthScreen extends StatefulWidget {
 
 class _SberAuthScreenState extends State<SberAuthScreen> {
   @override
+  void initState() {
+    super.initState();
+    print(''' 
+    Query params: ${widget.routerState.queryParams}
+     ''');
+  }
+
+  @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
