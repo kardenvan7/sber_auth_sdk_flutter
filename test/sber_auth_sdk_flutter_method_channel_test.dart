@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:sber_auth_sdk_flutter/sber_auth_sdk_flutter_method_channel.dart';
+import 'package:sber_auth_sdk_flutter/platform_api/method_channel/sber_auth_sdk_flutter_method_channel.dart';
 
 void main() {
   MethodChannelSberAuthSdkFlutter platform = MethodChannelSberAuthSdkFlutter();

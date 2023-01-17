@@ -3,43 +3,43 @@ package com.kardenvan.sber_auth_sdk_flutter.login.parameters
 class SberIdLoginParametersFactory {
     companion object Factory {
         fun fromMap(map: Map<*, *>): SberIdLoginParameters {
-            val redirectUrl = map["redirect_url"]
+            val returnUrl = map["return_url"]
 
-            if (redirectUrl !is String) throw Exception("Redirect Url is invalid")
+            if (returnUrl !is String) throw Exception("Return Url is invalid: $returnUrl")
 
             val clientId = map["client_id"]
 
-            if (clientId !is String) throw Exception("Client ID is invalid")
+            if (clientId !is String) throw Exception("Client ID is invalid: $clientId")
 
             val scope = map["scope"]
 
-            if (scope !is String) throw Exception("Scope is invalid")
+            if (scope !is String) throw Exception("Scope is invalid: $scope")
 
             val state = map["state"]
 
-            if (state !is String) throw Exception("State is invalid")
+            if (state !is String) throw Exception("State is invalid: $state")
 
             val nonce = map["nonce"]
 
-            if (nonce !is String) throw Exception("Nonce is invalid")
+            if (nonce !is String) throw Exception("Nonce is invalid: $nonce")
 
             var codeChallenge: SberIdLoginCodeChallenge? = null
             val codeChallengeMapOrNull = map["code_challenge"]
 
             if (codeChallengeMapOrNull != null && codeChallengeMapOrNull !is Map<*, *>) {
-                throw Exception("Code challenge is invalid")
+                throw Exception("Code challenge is null")
             } else if (codeChallengeMapOrNull is Map<*, *>) {
                 codeChallenge = SberIdLoginCodeChallengeFactory.fromMap(codeChallengeMapOrNull)
             }
 
             return SberIdLoginParameters(
-                redirectUrl = redirectUrl,
+                returnUrl = returnUrl,
                 clientId = clientId,
                 scope = scope,
                 state = state,
                 nonce = nonce,
                 codeChallenge = codeChallenge,
-                inCustomTabs = map["in_custom_tabs"] as Boolean? ?: false
+                customTabsRedirectUrl = map["custom_tabs_return_url"] as String?,
             )
         }
     }

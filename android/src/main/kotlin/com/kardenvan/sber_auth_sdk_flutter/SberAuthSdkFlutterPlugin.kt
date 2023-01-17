@@ -33,18 +33,19 @@ class SberAuthSdkFlutterPlugin : FlutterPlugin, MethodCallHandler, ActivityAware
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
-        // do nothing
+        callHandler.setContext(null)
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-        // do nothing
+        callHandler.setContext(binding.activity)
     }
 
     override fun onDetachedFromActivity() {
-        // do nothing
+        callHandler.setContext(null)
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+        callHandler.setContext(null)
         channel.setMethodCallHandler(null)
     }
 }

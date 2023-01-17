@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.Uri
 import com.kardenvan.sber_auth_sdk_flutter.login.parameters.SberIdLoginParameters
 import sberid.sdk.auth.login.SberIDLoginManager
-import java.util.*
 
 class SberIdLoginUriBuilder constructor(
     private val context: Context, private val parameters: SberIdLoginParameters
@@ -17,7 +16,7 @@ class SberIdLoginUriBuilder constructor(
             .scope(parameters.scope)
             .state(parameters.state)
             .nonce(parameters.nonce)
-            .redirectUri(parameters.redirectUrl)
+            .redirectUri(parameters.returnUrl)
 
         if (parameters.codeChallenge != null) {
             builder
@@ -25,7 +24,9 @@ class SberIdLoginUriBuilder constructor(
                 .codeChallengeMethod(parameters.codeChallenge.method)
         }
 
-        if (parameters.inCustomTabs) builder.customTabRedirectUri(parameters.redirectUrl, context)
+        if (parameters.customTabsRedirectUrl != null) {
+            builder.customTabRedirectUri(parameters.customTabsRedirectUrl, context)
+        }
 
         return builder.build()
     }

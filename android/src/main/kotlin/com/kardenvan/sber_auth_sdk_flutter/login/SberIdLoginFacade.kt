@@ -1,31 +1,28 @@
 package com.kardenvan.sber_auth_sdk_flutter.login
 
 import android.content.Context
-import android.net.Uri
-import com.kardenvan.sber_auth_sdk_flutter.login.helpers.SberIdLoginUriBuilder
+import com.kardenvan.sber_auth_sdk_flutter.login.helpers.SberIdLoginUri
 import com.kardenvan.sber_auth_sdk_flutter.login.parameters.SberIdLoginParameters
 import sberid.sdk.auth.login.SberIDLoginManager
 
-class SberIdLoginFacade constructor(private val parameters: SberIdLoginParameters) {
+class SberIdLoginFacade {
     private val loginManager = SberIDLoginManager()
 
-    fun login(context: Context): Boolean {
-        val uri = buildUri(context)
+    fun login(context: Context, parameters: SberIdLoginParameters): Boolean {
+        val uri = buildUri(context, parameters)
 
-        return loginWithSberID(context, uri, parameters.inCustomTabs)
+        return loginWithSberID(uri)
     }
 
-    private fun loginWithSberID(context: Context, uri: Uri, inCustomTabs: Boolean): Boolean {
-        return if (inCustomTabs) {
-            loginManager.loginWithSberIDToCustomTabs(context, uri)
+    private fun loginWithSberID(uri: SberIdLoginUri): Boolean {
+        return if (uri.isWithCustomTabs) {
+            loginManager.loginWithSberIDToCustomTabs(uri.context, uri.uri)
         } else {
-            loginManager.loginWithSberbankID(context, uri)
+            loginManager.loginWithSberbankID(uri.context, uri.uri)
         }
     }
 
-    private fun buildUri(context: Context): Uri {
-        val builder = SberIdLoginUriBuilder(context, parameters)
-
-        return builder.build()
+    private fun buildUri(context: Context, parameters: SberIdLoginParameters): SberIdLoginUri {
+        return SberIdLoginUri.fromParameters(context, parameters)
     }
 }

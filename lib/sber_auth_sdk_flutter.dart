@@ -1,6 +1,6 @@
 import 'package:sber_auth_sdk_flutter/platform_api/auth_parameters/sber_auth_parameters.dart';
 
-import 'sber_auth_sdk_flutter_platform_interface.dart';
+import 'platform_api/method_channel/sber_auth_sdk_flutter_platform_interface.dart';
 
 export 'platform_api/platform_api.dart';
 export 'widgets/widgets.dart';

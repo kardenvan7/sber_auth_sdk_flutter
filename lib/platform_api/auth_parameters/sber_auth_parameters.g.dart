@@ -13,12 +13,12 @@ _$_SberAuthSdkAuthParameters _$$_SberAuthSdkAuthParametersFromJson(
       scope: json['scope'] as String,
       state: json['state'] as String,
       nonce: json['nonce'] as String,
-      redirectUrl: json['redirect_url'] as String,
+      returnUrl: json['return_url'] as String,
+      customTabsReturnUrl: json['custom_tabs_return_url'] as String?,
       codeChallenge: json['code_challenge'] == null
           ? null
           : SberAuthCodeChallenge.fromJson(
               json['code_challenge'] as Map<String, dynamic>),
-      inCustomTabs: json['in_custom_tabs'] as bool,
     );
 
 Map<String, dynamic> _$$_SberAuthSdkAuthParametersToJson(
@@ -28,7 +28,7 @@ Map<String, dynamic> _$$_SberAuthSdkAuthParametersToJson(
       'scope': instance.scope,
       'state': instance.state,
       'nonce': instance.nonce,
-      'redirect_url': instance.redirectUrl,
+      'return_url': instance.returnUrl,
+      'custom_tabs_return_url': instance.customTabsReturnUrl,
       'code_challenge': instance.codeChallenge,
-      'in_custom_tabs': instance.inCustomTabs,
     };

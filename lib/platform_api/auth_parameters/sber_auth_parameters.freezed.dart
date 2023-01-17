@@ -24,10 +24,10 @@ mixin _$SberAuthParameters {
   String get scope => throw _privateConstructorUsedError;
   String get state => throw _privateConstructorUsedError;
   String get nonce => throw _privateConstructorUsedError;
-  String get redirectUrl => throw _privateConstructorUsedError;
+  String get returnUrl => throw _privateConstructorUsedError;
+  String? get customTabsReturnUrl => throw _privateConstructorUsedError;
   SberAuthCodeChallenge? get codeChallenge =>
       throw _privateConstructorUsedError;
-  bool get inCustomTabs => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,9 +46,9 @@ abstract class $SberAuthParametersCopyWith<$Res> {
       String scope,
       String state,
       String nonce,
-      String redirectUrl,
-      SberAuthCodeChallenge? codeChallenge,
-      bool inCustomTabs});
+      String returnUrl,
+      String? customTabsReturnUrl,
+      SberAuthCodeChallenge? codeChallenge});
 
   $SberAuthCodeChallengeCopyWith<$Res>? get codeChallenge;
 }
@@ -70,9 +70,9 @@ class _$SberAuthParametersCopyWithImpl<$Res, $Val extends SberAuthParameters>
     Object? scope = null,
     Object? state = null,
     Object? nonce = null,
-    Object? redirectUrl = null,
+    Object? returnUrl = null,
+    Object? customTabsReturnUrl = freezed,
     Object? codeChallenge = freezed,
-    Object? inCustomTabs = null,
   }) {
     return _then(_value.copyWith(
       clientId: null == clientId
@@ -91,18 +91,18 @@ class _$SberAuthParametersCopyWithImpl<$Res, $Val extends SberAuthParameters>
           ? _value.nonce
           : nonce // ignore: cast_nullable_to_non_nullable
               as String,
-      redirectUrl: null == redirectUrl
-          ? _value.redirectUrl
-          : redirectUrl // ignore: cast_nullable_to_non_nullable
+      returnUrl: null == returnUrl
+          ? _value.returnUrl
+          : returnUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      customTabsReturnUrl: freezed == customTabsReturnUrl
+          ? _value.customTabsReturnUrl
+          : customTabsReturnUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       codeChallenge: freezed == codeChallenge
           ? _value.codeChallenge
           : codeChallenge // ignore: cast_nullable_to_non_nullable
               as SberAuthCodeChallenge?,
-      inCustomTabs: null == inCustomTabs
-          ? _value.inCustomTabs
-          : inCustomTabs // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 
@@ -133,9 +133,9 @@ abstract class _$$_SberAuthSdkAuthParametersCopyWith<$Res>
       String scope,
       String state,
       String nonce,
-      String redirectUrl,
-      SberAuthCodeChallenge? codeChallenge,
-      bool inCustomTabs});
+      String returnUrl,
+      String? customTabsReturnUrl,
+      SberAuthCodeChallenge? codeChallenge});
 
   @override
   $SberAuthCodeChallengeCopyWith<$Res>? get codeChallenge;
@@ -157,9 +157,9 @@ class __$$_SberAuthSdkAuthParametersCopyWithImpl<$Res>
     Object? scope = null,
     Object? state = null,
     Object? nonce = null,
-    Object? redirectUrl = null,
+    Object? returnUrl = null,
+    Object? customTabsReturnUrl = freezed,
     Object? codeChallenge = freezed,
-    Object? inCustomTabs = null,
   }) {
     return _then(_$_SberAuthSdkAuthParameters(
       clientId: null == clientId
@@ -178,18 +178,18 @@ class __$$_SberAuthSdkAuthParametersCopyWithImpl<$Res>
           ? _value.nonce
           : nonce // ignore: cast_nullable_to_non_nullable
               as String,
-      redirectUrl: null == redirectUrl
-          ? _value.redirectUrl
-          : redirectUrl // ignore: cast_nullable_to_non_nullable
+      returnUrl: null == returnUrl
+          ? _value.returnUrl
+          : returnUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      customTabsReturnUrl: freezed == customTabsReturnUrl
+          ? _value.customTabsReturnUrl
+          : customTabsReturnUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       codeChallenge: freezed == codeChallenge
           ? _value.codeChallenge
           : codeChallenge // ignore: cast_nullable_to_non_nullable
               as SberAuthCodeChallenge?,
-      inCustomTabs: null == inCustomTabs
-          ? _value.inCustomTabs
-          : inCustomTabs // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -202,9 +202,9 @@ class _$_SberAuthSdkAuthParameters extends _SberAuthSdkAuthParameters {
       required this.scope,
       required this.state,
       required this.nonce,
-      required this.redirectUrl,
-      this.codeChallenge,
-      required this.inCustomTabs})
+      required this.returnUrl,
+      this.customTabsReturnUrl,
+      this.codeChallenge})
       : super._();
 
   factory _$_SberAuthSdkAuthParameters.fromJson(Map<String, dynamic> json) =>
@@ -219,15 +219,15 @@ class _$_SberAuthSdkAuthParameters extends _SberAuthSdkAuthParameters {
   @override
   final String nonce;
   @override
-  final String redirectUrl;
+  final String returnUrl;
+  @override
+  final String? customTabsReturnUrl;
   @override
   final SberAuthCodeChallenge? codeChallenge;
-  @override
-  final bool inCustomTabs;
 
   @override
   String toString() {
-    return 'SberAuthParameters(clientId: $clientId, scope: $scope, state: $state, nonce: $nonce, redirectUrl: $redirectUrl, codeChallenge: $codeChallenge, inCustomTabs: $inCustomTabs)';
+    return 'SberAuthParameters(clientId: $clientId, scope: $scope, state: $state, nonce: $nonce, returnUrl: $returnUrl, customTabsReturnUrl: $customTabsReturnUrl, codeChallenge: $codeChallenge)';
   }
 
   @override
@@ -240,18 +240,18 @@ class _$_SberAuthSdkAuthParameters extends _SberAuthSdkAuthParameters {
             (identical(other.scope, scope) || other.scope == scope) &&
             (identical(other.state, state) || other.state == state) &&
             (identical(other.nonce, nonce) || other.nonce == nonce) &&
-            (identical(other.redirectUrl, redirectUrl) ||
-                other.redirectUrl == redirectUrl) &&
+            (identical(other.returnUrl, returnUrl) ||
+                other.returnUrl == returnUrl) &&
+            (identical(other.customTabsReturnUrl, customTabsReturnUrl) ||
+                other.customTabsReturnUrl == customTabsReturnUrl) &&
             (identical(other.codeChallenge, codeChallenge) ||
-                other.codeChallenge == codeChallenge) &&
-            (identical(other.inCustomTabs, inCustomTabs) ||
-                other.inCustomTabs == inCustomTabs));
+                other.codeChallenge == codeChallenge));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, clientId, scope, state, nonce,
-      redirectUrl, codeChallenge, inCustomTabs);
+      returnUrl, customTabsReturnUrl, codeChallenge);
 
   @JsonKey(ignore: true)
   @override
@@ -270,13 +270,14 @@ class _$_SberAuthSdkAuthParameters extends _SberAuthSdkAuthParameters {
 
 abstract class _SberAuthSdkAuthParameters extends SberAuthParameters {
   const factory _SberAuthSdkAuthParameters(
-      {required final String clientId,
-      required final String scope,
-      required final String state,
-      required final String nonce,
-      required final String redirectUrl,
-      final SberAuthCodeChallenge? codeChallenge,
-      required final bool inCustomTabs}) = _$_SberAuthSdkAuthParameters;
+          {required final String clientId,
+          required final String scope,
+          required final String state,
+          required final String nonce,
+          required final String returnUrl,
+          final String? customTabsReturnUrl,
+          final SberAuthCodeChallenge? codeChallenge}) =
+      _$_SberAuthSdkAuthParameters;
   const _SberAuthSdkAuthParameters._() : super._();
 
   factory _SberAuthSdkAuthParameters.fromJson(Map<String, dynamic> json) =
@@ -291,11 +292,11 @@ abstract class _SberAuthSdkAuthParameters extends SberAuthParameters {
   @override
   String get nonce;
   @override
-  String get redirectUrl;
+  String get returnUrl;
+  @override
+  String? get customTabsReturnUrl;
   @override
   SberAuthCodeChallenge? get codeChallenge;
-  @override
-  bool get inCustomTabs;
   @override
   @JsonKey(ignore: true)
   _$$_SberAuthSdkAuthParametersCopyWith<_$_SberAuthSdkAuthParameters>

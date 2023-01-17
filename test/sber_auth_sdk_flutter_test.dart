@@ -1,9 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
-import 'package:sber_auth_sdk_flutter/platform_api/auth_parameters/sber_auth_parameters.dart';
 import 'package:sber_auth_sdk_flutter/sber_auth_sdk_flutter.dart';
-import 'package:sber_auth_sdk_flutter/sber_auth_sdk_flutter_method_channel.dart';
-import 'package:sber_auth_sdk_flutter/sber_auth_sdk_flutter_platform_interface.dart';
 
 class MockSberAuthSdkFlutterPlatform
     with MockPlatformInterfaceMixin

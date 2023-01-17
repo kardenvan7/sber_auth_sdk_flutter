@@ -5,8 +5,10 @@ import 'package:sber_auth_sdk_flutter/platform_api/auth_parameters/sber_auth_par
 import 'sber_auth_sdk_flutter_platform_interface.dart';
 
 /// An implementation of [SberAuthSdkFlutterPlatform] that uses method channels.
+///
 class MethodChannelSberAuthSdkFlutter extends SberAuthSdkFlutterPlatform {
   /// The method channel used to interact with the native platform.
+  ///
   @visibleForTesting
   final methodChannel = const MethodChannel('sber_auth_sdk_flutter');
 

@@ -1,9 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sber_auth_sdk_flutter/platform_api/auth_parameters/sber_auth_parameters.dart';
 import 'package:sber_auth_sdk_flutter/sber_auth_sdk_flutter.dart';
 import 'package:uuid/uuid.dart';
 
@@ -19,37 +17,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _sberAuthSdkFlutterPlugin = SberAuthSdkFlutter();
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion = await _sberAuthSdkFlutterPlugin.getPlatformVersion() ??
-          'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -76,10 +43,11 @@ class _MyAppState extends State<MyApp> {
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  static const String _redirectUrl = 'your-deeplink';
+  static const String _returnUrl = 'your-deeplink';
   static const String _clientId = 'your-client-id';
   static const String _scope = 'openid name email mobile gender birthdate';
-  static const bool _inCustomTabs = true;
+  // ignore: unnecessary_nullable_for_final_variable_declarations
+  static const String? _customTabsReturnUrl = 'your-deeplink';
 
   @override
   Widget build(BuildContext context) {
@@ -104,11 +72,11 @@ class HomeScreen extends StatelessWidget {
     await sberSdk.authorizeWithSberId(
       SberAuthParameters(
         clientId: _clientId,
-        redirectUrl: _redirectUrl,
+        returnUrl: _returnUrl,
         scope: _scope,
         nonce: nonce,
         state: state,
-        inCustomTabs: _inCustomTabs,
+        customTabsReturnUrl: _customTabsReturnUrl,
       ),
     );
   }
@@ -130,7 +98,7 @@ class _SberAuthScreenState extends State<SberAuthScreen> {
   @override
   void initState() {
     super.initState();
-    print(''' 
+    debugPrint(''' 
     Query params: ${widget.routerState.queryParams}
      ''');
   }

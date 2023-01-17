@@ -16,9 +16,9 @@ class SberAuthParameters with _$SberAuthParameters {
     required String scope,
     required String state,
     required String nonce,
-    required String redirectUrl,
+    required String returnUrl,
+    String? customTabsReturnUrl,
     SberAuthCodeChallenge? codeChallenge,
-    required bool inCustomTabs,
   }) = _SberAuthSdkAuthParameters;
 
   factory SberAuthParameters.fromJson(Map<String, dynamic> json) =>

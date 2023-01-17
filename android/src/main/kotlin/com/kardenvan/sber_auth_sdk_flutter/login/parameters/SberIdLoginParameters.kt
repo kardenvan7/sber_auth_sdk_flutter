@@ -5,9 +5,9 @@ data class SberIdLoginParameters constructor(
     val scope: String,
     val state: String,
     val nonce: String,
-    val redirectUrl: String,
+    val returnUrl: String,
     val codeChallenge: SberIdLoginCodeChallenge?,
-    val inCustomTabs: Boolean = false,
+    val customTabsRedirectUrl: String?,
 )
 
 data class SberIdLoginCodeChallenge constructor(

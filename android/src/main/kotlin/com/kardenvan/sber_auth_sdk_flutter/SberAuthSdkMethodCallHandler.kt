@@ -6,7 +6,13 @@ import com.kardenvan.sber_auth_sdk_flutter.login.parameters.SberIdLoginParameter
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel.Result
 
-class SberAuthSdkMethodCallHandler constructor(private val context: Context) {
+class SberAuthSdkMethodCallHandler constructor(context: Context) {
+    private var context: Context? = context
+
+    fun setContext(context: Context?) {
+        this.context = context
+    }
+
     fun onMethodCall(call: MethodCall, result: Result) {
         when (call.method) {
             "getPlatformVersion" -> getPlatformVersion(result)
@@ -16,15 +22,16 @@ class SberAuthSdkMethodCallHandler constructor(private val context: Context) {
     }
 
     private fun authorizeWithSberId(call: MethodCall, result: Result) {
+        if (context == null) handleMethodError(result, Exception("Context is not set for the app"))
+
         try {
             val callArgs = call.arguments
 
             if (callArgs !is Map<*, *>) throw Exception("Method call arguments are invalid")
 
             val loginParameters = SberIdLoginParametersFactory.fromMap(callArgs)
-
-            val loginFacade = SberIdLoginFacade(parameters = loginParameters)
-            val hasLoginBegun = loginFacade.login(context)
+            val loginFacade = SberIdLoginFacade()
+            val hasLoginBegun = loginFacade.login(context!!, loginParameters)
 
             if (!hasLoginBegun) {
                 result.error(
