@@ -1,7 +1,6 @@
 name: sber_auth_sdk_flutter
 description: Sber Auth SDK For Flutter
-version: 0.0.1
-homepage:
+version: 0.0.4
 
 environment:
   sdk: '>=2.18.4 <3.0.0'
