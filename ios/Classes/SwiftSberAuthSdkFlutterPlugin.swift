@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import SberbankSDK
 
 public class SwiftSberAuthSdkFlutterPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
