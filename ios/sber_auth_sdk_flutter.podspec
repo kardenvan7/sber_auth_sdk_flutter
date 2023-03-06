@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'sber_auth_sdk_flutter'
-  s.version          = '0.0.4'
+  s.version          = '0.0.5'
   s.summary          = 'Sber Auth SDK For Flutter'
   s.description      = <<-DESC
 Sber Auth SDK For Flutter
