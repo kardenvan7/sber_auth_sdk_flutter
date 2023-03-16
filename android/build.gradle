@@ -46,6 +46,6 @@ android {
     }
 
     dependencies {
-        implementation 'io.github.sberid:SberIdSDK:2.2.0'
+        implementation 'io.github.sberid:SberIdSDK:2.3.0'
     }
 }
