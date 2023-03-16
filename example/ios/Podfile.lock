@@ -1,6 +1,6 @@
 PODS:
   - Flutter (1.0.0)
-  - sber_auth_sdk_flutter (0.0.4):
+  - sber_auth_sdk_flutter (0.0.5):
     - Flutter
     - SberIdSDK (= 2.3.0)
   - SberIdSDK (2.3.0):
@@ -24,7 +24,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  sber_auth_sdk_flutter: 93e9f79d84610ee446514f175edb6a85c3656ef3
+  sber_auth_sdk_flutter: 8b8de2434a07d873312f7f2dbf9c42aad805f2d0
   SberIdSDK: bb3080cd677f395be60e35a6a258a79bf1ad4269
   YandexMobileMetrica: baf7cea47cb87fc9af963c4f747ce8dd7df3d7c0
 
